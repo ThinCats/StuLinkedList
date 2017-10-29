@@ -22,7 +22,7 @@ int main()
     {
     case 1:
         {
-            creatAList(stuList);
+            stuList = creatAList();
             break;
         }
     case 2:

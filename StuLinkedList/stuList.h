@@ -26,7 +26,7 @@ struct node
 typedef struct node node;
 
 //Create and record the data;
-node * creatAList(node * head);
+node * creatAList(void);
 
 node * deleteAnode(node * head, int nodeId);
 
