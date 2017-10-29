@@ -1,4 +1,4 @@
-/*stuListModel.h*/
+/*stuList.h*/
 struct StuInfo
 {
     char id[20];
