@@ -26,6 +26,26 @@ struct node
 };
 typedef struct node node;
 
+//Create and record the data;
+node * creatAList(node * head);
+
+node * deleteAnode(node * head, int nodeId);
+
+void printAList(node * head);
+
+//insert a node inside some ids(中文来讲就是在某序号下一个插入节点)
+node * insertANode(node * head, int nodeId_before);
+
+//So We need to reId all the nodes
+//startId means whether you want to start with 1 or 0;
+node * reIdList(node * head, int startId);
+
+//calculate the average score
+//return whether is successful
+//the head is not changed
+int calTheAve(node * head);
+
+
 int main()
 {
     printf("Hello world!\n");
