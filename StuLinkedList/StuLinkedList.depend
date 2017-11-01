@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1509264708 source:d:\git\stulinkedlist\stulinkedlist\main.c
+	<stdio.h>
+	<stdlib.h>
+	"stuList.h"
+
+1509530782 d:\git\stulinkedlist\stulinkedlist\stulist.h
+
+1509530026 source:d:\git\stulinkedlist\stulinkedlist\stulist.c
+	<stdio.h>
+	"stuList.h"
+	"myIput.h"
+
+1509528864 source:d:\git\stulinkedlist\stulinkedlist\myinput.c
+	<stdio.h>
+	<string.h>
+
+1509528572 d:\git\stulinkedlist\stulinkedlist\myiput.h
+

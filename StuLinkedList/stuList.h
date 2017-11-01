@@ -3,7 +3,7 @@ struct StuInfo
 {
     char id[20];
     char name[20];
-    char sex;    //w = female; m = male;
+    char sex[20];    //w = female; m = male;
 };
 
 //Student's score
@@ -11,7 +11,7 @@ struct StuScore
 {
     int chinese;
     int math;
-    int English;
+    int english;
     float average;
 };
 
@@ -24,9 +24,12 @@ struct node
     struct node * next;    //Point to the next;
 };
 typedef struct node node;
+//getData
+void getData(node * current);
 
 //Create and record the data;
-node * creatAList(void);
+//n == max number of students;
+node * creatAList(int n);
 
 node * deleteAnode(node * head, int nodeId);
 
