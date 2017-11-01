@@ -28,20 +28,21 @@ node * creatAList(int n)
         getData(current);
 
         //setId
-        current->nodeId = setedId++;
+        //current->nodeId = setedId++;
 
         //initAve
         current->score.average = 0;
 
 
     }
+    prev->next = NULL;
     //建立序号
-    //head = reIdList(head,1);
+    head = reIdList(head,1);
 
     //释放多于内存
     free(current);
     //设置尾结点
-    prev->next = NULL;
+
 
     return head;
 }
@@ -50,17 +51,18 @@ void getData(node * current)
 {
 
 
-        //获取name
+
+        //获取学号   //遇到了无法解决的问题！！！！！！
         getchar();
+        //printf("Please input your id:\n>>>");
+        //gets(current->info.myid);
+        //scanf("%d", &current->info.myid);
+
+        //获取name
+        //getchar();
         printf("Please input your name:\n>>>");
         gets(current->info.name);
         //scanf("\n5s", current->info.name);
-
-        //获取学号
-        //getchar();
-        printf("Please input your id:\n>>>");
-        gets(current->info.id);
-        //scanf("%s", current->info.id);
 
         //获取性别
         //getchar();
@@ -81,13 +83,28 @@ void getData(node * current)
         printf("Please input your English:\n>>>");
         scanf("%d", &current->score.english);
 
+        printf("\n********************That's good*********************\n\n");
 }
 
 node * deleteAnode(node * head, int nodeId)
 {
+    if(nodeId == 0)
+    {
+        printf("Nothing has been done!\n");
+        return head;
+    }
+
     node *current;
     node *prev;
     current = head;
+
+
+    if(current->next->next == 1)
+    {
+        head = NULL;
+        printf("\nNow all is empty, please recreate another one\n");
+        return head;
+    }
     while(current->nodeId != nodeId)
     {
         //储存上一节点
@@ -111,7 +128,7 @@ void printAList(node * head)
         while(current != NULL)
         {
         printf("------------------------------------------------------------------------------------------------------\n");
-        printf("id = %d\tname = %s\tstuId = %s\tsex = %s\tchinese = %d\t math = %d\t eng = %d\t Ave = %.2f\n",current->nodeId ,(current->info.id)
+        printf("nodeId = %d\tname = %s\tsex = %s\tchinese = %d\t math = %d\t eng = %d\t Ave = %.2f\n",current->nodeId
                ,current->info.name, current->info.sex, current->score.chinese, current->score.math, current->score.english,
                current->score.average);
         current = current->next;
@@ -122,8 +139,21 @@ void printAList(node * head)
 
 node * insertANode(node * head, int nodeId)
 {
+    if(nodeId == 0)
+    {
+        printf("Nothing has been done!\n");
+        return head;
+    }
+
+    if(nodeId == 1)        //nodeId--后可能会导致非法定访问（越界）
+    {
+        nodeId = 2;
+    }
+
+
     nodeId--; //让current变为之后， prev变为之前
-    node * newNode;  //New a new node
+    node * newNode = (node*)malloc(sizeof(node *)); //New a new node
+    //newNode->next = NULL;
     node * current;
     node * prev;
 
@@ -141,10 +171,15 @@ node * insertANode(node * head, int nodeId)
 
     //建立联系
     //newNode 插入current 和 prev中央
-    prev->next = newNode;
+    if(nodeId != 1)               //nodeId = 1 has a different situation
+        prev->next = newNode;
     newNode->next = current;
 
-    //head = reIdList(head,1);
+    if(nodeId == 1)
+        head = newNode;
+
+    //reId;
+    head = reIdList(head,1);
     return head;
 
 
@@ -158,17 +193,20 @@ node * reIdList(node * head, int startId)
     //遍历链表
     while(current != NULL)
     {
-        current->nodeId = startId;
+        (current->nodeId) = startId;
         startId++;
+        if(current->next == NULL)
+            break;
         current = current->next;
     }
 
     return head;
+
 }
 
 int calTheAve(node * head)
 {
-    node * current;
+    node * current = head;
     while(current != NULL)
     {
         float sum = 0;
@@ -178,4 +216,47 @@ int calTheAve(node * head)
     }
 
     return 1;
+}
+
+node * orderAList(node * head)
+{
+    int i;
+    int j;
+    int count = 0;
+    node * current = head;
+    node * prev;
+    node temp;
+    while(current != NULL)
+    {
+        count++;
+        current = current->next;
+    }
+
+    for(i=0;i<count;i++)
+    {
+        for(j=0;j<count;j++)
+        {
+            prev = current;
+            current = current->next;
+            if(prev->score.average < current->score.average)
+            {
+                temp.score = prev->score;
+                temp.info = prev->info;
+
+                prev->score = current->score;
+                prev->info = current->info;
+
+                current->score = temp.score;
+                current->info = temp.info;
+
+            }
+        }
+
+        current = head;
+    }
+
+
+        head = reIdList(head,1);
+
+        return head;
 }

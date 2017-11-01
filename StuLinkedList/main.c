@@ -9,8 +9,8 @@ void printWelcome(void);
 void printStars(int n);
 int main()
 {
-    node *stuList = (node *)malloc(sizeof(node));
-
+    //node *stuList = (node *)malloc(sizeof(node));
+    node *stuList;
     //UI:
     //putchar('\n');
 
@@ -27,7 +27,7 @@ int main()
         break;
     case 1:
         {
-            printf("How many students do you want to insert?\n");
+            printf("How many students do you want to insert?(0 to exit)\n");
             int n;
             scanf("%d", &n);
             stuList = creatAList(n);
@@ -42,21 +42,25 @@ int main()
         }
     case 3:
         {
-            printf("You want to add after which one?(I mean the nodeId\n>>)");
+            printf("You want to add before which one?(I mean the nodeId)(0 to exit)\n>>)");
             int nodeId;
             scanf("%d", &nodeId);
 
             if((stuList = insertANode(stuList, nodeId)));
                 printSuc();
+
+            break;
         }
     case 4:
         {
-            printf("You want to delete which one?(I mean the nodeId\n>>)");
+            printf("You want to delete which one?(I mean the nodeId)(0 to exit)\n>>)");
             int nodeId;
             scanf("%d", &nodeId);
 
             if(stuList = deleteAnode(stuList, nodeId))
                 printSuc();
+
+            break;
         }
     case 5:
         {
@@ -66,7 +70,10 @@ int main()
     case 6:
         {
             //if(stuList = orderAList(stuList))
-                printSuc();
+                //printSuc();
+
+                //Bug:
+                printf("Sorry, I still can't fix this bug\n\n");
         }
     }
     }

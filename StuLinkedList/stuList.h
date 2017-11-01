@@ -1,7 +1,8 @@
 /*stuList.h*/
 struct StuInfo
 {
-    char id[20];
+    int nosense;
+    int myid;
     char name[20];
     char sex[20];    //w = female; m = male;
 };
