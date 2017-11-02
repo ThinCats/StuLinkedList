@@ -69,11 +69,11 @@ int main()
         }
     case 6:
         {
-            //if(stuList = orderAList(stuList))
-                //printSuc();
+            if(stuList = orderAList(stuList))
+                printSuc();
 
                 //Bug:
-                printf("Sorry, I still can't fix this bug\n\n");
+                //printf("Sorry, I still can't fix this bug\n\n");
         }
     }
     }

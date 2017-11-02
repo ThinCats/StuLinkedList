@@ -127,9 +127,9 @@ void printAList(node * head)
 
         while(current != NULL)
         {
+        printf("nodeId \t  Name \t  Sex  \tChinese\t  Math \tEnglish\tAverage\t");
         printf("------------------------------------------------------------------------------------------------------\n");
-        printf("nodeId = %d\tname = %s\tsex = %s\tchinese = %d\t math = %d\t eng = %d\t Ave = %.2f\n",current->nodeId
-               ,current->info.name, current->info.sex, current->score.chinese, current->score.math, current->score.english,
+        printf("%-7d\t%-7s\t%-7s\t%-7d\t%-7d\t%-7d\t%-7.2f\n",current->nodeId,current->info.name, current->info.sex, current->score.chinese, current->score.math, current->score.english,
                current->score.average);
         current = current->next;
         }
@@ -137,8 +137,10 @@ void printAList(node * head)
 
 }
 
+//Still have some bugs
 node * insertANode(node * head, int nodeId)
 {
+
     if(nodeId == 0)
     {
         printf("Nothing has been done!\n");
@@ -147,7 +149,7 @@ node * insertANode(node * head, int nodeId)
 
     if(nodeId == 1)        //nodeId--后可能会导致非法定访问（越界）
     {
-        nodeId = 2;
+        //nodeId = 2;
     }
 
 
@@ -220,43 +222,33 @@ int calTheAve(node * head)
 
 node * orderAList(node * head)
 {
-    int i;
-    int j;
-    int count = 0;
-    node * current = head;
-    node * prev;
-    node temp;
-    while(current != NULL)
-    {
-        count++;
-        current = current->next;
-    }
+    node * current;
+    node * supr;  //Next one
+    node temp;  //For Swap
+    node * tail = NULL;  //As a tail to terminate the loop
 
-    for(i=0;i<count;i++)
+    //Bubble sort
+    while(tail != head)
     {
-        for(j=0;j<count;j++)
+        for(current = head;current->next!=tail;current=current->next)
         {
-            prev = current;
-            current = current->next;
-            if(prev->score.average < current->score.average)
+            supr = current->next;
+            if(supr->score.average > current->score.average)
             {
-                temp.score = prev->score;
-                temp.info = prev->info;
+                //swap the data
+                temp.score = supr->score;
+                temp.info = supr->info;
 
-                prev->score = current->score;
-                prev->info = current->info;
+                supr->score = current->score;
+                supr->info = current->info;
 
                 current->score = temp.score;
                 current->info = temp.info;
 
             }
         }
-
-        current = head;
+        tail = current;  //tail go ahead;
     }
 
-
-        head = reIdList(head,1);
-
-        return head;
+    return head;
 }
