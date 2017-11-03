@@ -252,3 +252,45 @@ node * orderAList(node * head)
 
     return head;
 }
+
+node * delNewData(node * head, int switchNum, int switchNode)
+{
+    //Find the student:
+    node * current = head;
+    node * prev;
+
+    while(current->nodeId != switchNode)
+    {
+        prev = current;
+        current = current->next;
+    }
+
+    //Delete a index;
+    switch(switchNum)
+    {
+    case 1:
+        current->nodeId = 0;
+        break;
+    case 2:
+        current->info.name[0] = '\0';
+        break;
+    case 3:
+        current->info.sex[0] = '\0';
+        break;
+    case 4:
+        current->score.chinese = 0;
+        break;
+    case 5:
+        current->score.math = 0;
+        break;
+    case 6:
+        current->score.english = 0;
+        break;
+    case 7:
+        current->score.average = 0;
+        break;
+    default:
+        break;
+    }
+    return head;
+}

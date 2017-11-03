@@ -50,3 +50,6 @@ int calTheAve(node * head);
 
 //Order the list
 node * orderAList(node * head);
+
+//delete a new data;
+node * delNewData(node * head, int switchNum, int switchNode);

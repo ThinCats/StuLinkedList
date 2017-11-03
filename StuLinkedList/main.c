@@ -71,10 +71,34 @@ int main()
         {
             if(stuList = orderAList(stuList))
                 printSuc();
-
+            break;
                 //Bug:
                 //printf("Sorry, I still can't fix this bug\n\n");
         }
+    case 7:         //Delete data in chosen student
+        {
+            int switchNode;
+            int switchNum;
+
+            //UI
+            printf("---------Look down------------------\n");
+            printf("Students:\n");
+            printAList(stuList);
+            printf("\nDatas:\n");
+            printf("\n1.nodeId \t2.  Name \t3.  Sex  \t4.Chinese\t5.  Math \t6.English\t7.Average\t\n\n");
+            printf("Which student do you want to delete?(node id)?(0 to exit)\n>>>");
+            scanf("%d", &switchNode);
+            printf("Which index do you want to delete?(0 to exit)\n>>>");
+            scanf("%d", &switchNum);
+
+            if(stuList = delNewData(stuList, switchNum, switchNode));
+                printSuc();
+
+            break;
+        }
+
+    default:
+            printf("Wrong input!\n");
     }
     }
     return 0;
@@ -97,6 +121,7 @@ void printWelcome(void)
     printf("\t\t4. Delete an old student\n");
     printf("\t\t5. Print The table\n");
     printf("\t\t6. Order them by the Ave score\n");
+    printf("\t\t7. Delete a student's score\n");
     printf("\t\t0. Exit\n");
     printStars(n);
     printf(">>>");
